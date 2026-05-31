@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Sayang! 💕</title>
+    <style>
+        /* Desain Dasar & Warna Dominan Pink */
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ffe5ec 0%, #ffb3c6 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            color: #4a4a4a;
+        }
+
+        /* Kontainer Utama */
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(255, 75, 110, 0.2);
+            backdrop-filter: blur(8px);
+            border: 3px dashed #ff4f79;
+            max-width: 350px;
+            width: 90%;
+            position: relative;
+            z-index: 10;
+            animation: bounce 2s infinite alternate;
+        }
+
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            color: #ff4f79;
+            font-size: 24px;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+
+        /* Maskot/Emoji Animasi */
+        .cute-emoji {
+            font-size: 50px;
+            margin: 15px 0;
+            display: inline-block;
+            animation: wiggle 1s infinite;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        /* Gaya Surat yang Bisa Diklik */
+        .envelope {
+            background: #ff758f;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(255, 117, 143, 0.4);
+            transition: all 0.3s ease;
+            margin: 20px auto 10px;
+            display: inline-block;
+        }
+
+        .envelope:hover {
+            background: #ff4f79;
+            transform: scale(1.05);
+        }
+
+        /* Pesan Rahasia (Sembunyi dulu) */
+        .secret-message {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background: #fff0f3;
+            border-radius: 15px;
+            border-left: 5px solid #ff758f;
+            text-align: left;
+            font-size: 14px;
+            line-height: 1.6;
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Efek Hati Berjatuhan */
+        .heart {
+            position: absolute;
+            color: #ff758f;
+            font-size: 20px;
+            position: fixed;
+            top: -10%;
+            z-index: 1;
+            user-select: none;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(360deg);
+            }
+        }
+
+        .footer-text {
+            font-size: 11px;
+            color: #a3a3a3;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Efek Latar Belakang Hati -->
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '💖';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            heart.style.opacity = Math.random() * 0.7 + 0.3;
+            heart.style.fontSize = Math.random() * 15 + 15 + 'px';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+        setInterval(createHeart, 300);
+    </script>
+
+    <!-- Konten Utama -->
+    <div class="container">
+        <div class="cute-emoji">(｡♥‿♥｡)</div>
+        <h1>Happy Birthday, Sayang! 🌸</h1>
+        <p>Ada surat kecil nih buat kamu yang paling gemesin. Coba diklik deh di bawah!</p>
+        
+        <!-- Tombol Surat -->
+        <div class="envelope" id="btnSurat" onclick="bukaSurat()">
+            📩 Buka Surat Cinta
+        </div>
+
+        <!-- Isi Surat (Silakan ganti teksnya sesuai kemauan lu) -->
+        <div class="secret-message" id="isiSurat">
+            <strong>Halo Pacarku yang Paling Lucu! 🧸</strong><br><br>
+            Selamat ulang tahun ya! Makasih udah selalu jadi alasan aku buat senyum setiap hari. Di umur yang baru ini, aku doain semoga kamu selalu bahagia, sehat, dan makin gemesin tentunya! <br><br>
+            Jangan bosen-bosen sama aku yaaa. <i>I love you so much!</i> 💖✨
+        </div>
+
+        <div class="footer-text">Made with love for you 💕</div>
+    </div>
+
+    <!-- Script buat fungsi klik -->
+    <script>
+        function bukaSurat() {
+            const pesan = document.getElementById('isiSurat');
+            const tombol = document.getElementById('btnSurat');
+            
+            if (pesan.style.display === 'none' || pesan.style.display === '') {
+                pesan.style.display = 'block';
+                tombol.innerHTML = '💖 Udah Dibaca! 💖';
+                tombol.style.background = '#ff4f79';
+            } else {
+                pesan.style.display = 'none';
+                tombol.innerHTML = '📩 Buka Surat Cinta';
+                tombol.style.background = '#ff758f';
+            }
+        }
+    </script>
+
+</body>
+</html>
